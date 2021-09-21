@@ -1,6 +1,9 @@
 package com.example.product.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +49,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/product")
-	public Product saveProduct(@RequestBody ProductDTO productdto) {
+	public Product saveProduct(@Valid @RequestBody ProductDTO productdto) {
 		logger.info("saveProduct() API invoked");
 
 		return service.saveProduct(productMapper.toProduct(productdto));
