@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.product.entity.Product;
+import com.example.product.mapper.ProductMapper;
+import com.example.product.models.ProductDTO;
 import com.example.product.service.ProductService;
 
 @RestController
@@ -24,32 +26,37 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 
+	@Autowired
+	private ProductMapper productMapper;
+
 	@GetMapping("/product/{id}")
-	public Product getProduct(@PathVariable String id) {
+	public ProductDTO getProduct(@PathVariable String id) {
 		logger.info("getProduct() API invoked");
 		Product product = service.getProduct(id);
-		return product;
+
+		return productMapper.toProductDTO(product);
 	}
 
 	@GetMapping("/products")
-	public List<Product> getProducts() {
+	public List<ProductDTO> getProducts() {
 		logger.info("getProducts() API invoked");
 		List<Product> products = service.getProducts();
-		return products;
+
+		return productMapper.toProductDTOs(products);
 	}
 
 	@PostMapping("/product")
-	public Product saveProduct(@RequestBody Product product) {
+	public Product saveProduct(@RequestBody ProductDTO productdto) {
 		logger.info("saveProduct() API invoked");
-		return service.saveProduct(product);
+
+		return service.saveProduct(productMapper.toProduct(productdto));
 	}
 
 	@DeleteMapping("/product/remove/{id}")
 	public ResponseEntity<HttpStatus> deleteProduct(@PathVariable String id) {
 		logger.info("saveProduct() API invoked");
-		 service.deleteProduct(id);
-		 return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+		service.deleteProduct(id);
+		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
 	}
-	
 
 }

@@ -25,13 +25,7 @@ public class Product {
 	
 	@Column(name ="product_rate")
 	private double productrate;
-    public Product(){}
-
-	public Product(String productname, double productrate) {
-		super();
-		this.productname = productname;
-		this.productrate = productrate;
-	}
+  
 
 	public Long getProductid() {
 		return productid;

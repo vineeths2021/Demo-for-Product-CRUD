@@ -18,7 +18,7 @@ public class ProductService {
 	private static final Logger logger = LogManager.getLogger(ProductService.class);
 	@Autowired
 	private ProductRepository repository;
-
+	
 	public Product getProduct(String id) {
 		logger.info("getProduct() Service method invoked");
 		return repository.findById(Long.valueOf(id)).orElseThrow(() -> new ResourceNotFoundException("Not found with id"+id));

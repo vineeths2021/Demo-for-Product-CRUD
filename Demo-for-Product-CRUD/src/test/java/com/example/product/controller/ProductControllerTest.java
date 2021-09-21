@@ -16,6 +16,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 import com.example.product.entity.Product;
+import com.example.product.mapper.ProductMapper;
+import com.example.product.models.ProductDTO;
 import com.example.product.repository.ProductRepository;
 import com.example.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,6 +34,8 @@ public class ProductControllerTest {
 	
 	@MockBean
 	private ProductRepository repository;
+	@MockBean
+	private ProductMapper productMapper;
 	
 	@Test
 	@DisplayName("Getting a Product Success response")
@@ -53,7 +57,7 @@ public class ProductControllerTest {
 
 		 mockmvc.perform(MockMvcRequestBuilders
 				.post("/api/product")
-				.content(asJsonString(new Product("firstName4", 12.0)))
+				.content(asJsonString(new ProductDTO("firstName4", 12.0)))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().is2xxSuccessful());
