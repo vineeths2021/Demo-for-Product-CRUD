@@ -28,7 +28,7 @@ public class Product {
 	private String productname;
 	
 	@Column(name ="product_rate")
-	private double productrate;
+	private Double productrate;
   
 
 	public Long getProductid() {
@@ -47,11 +47,11 @@ public class Product {
 		this.productname = productname;
 	}
 
-	public double getProductrate() {
+	public Double getProductrate() {
 		return productrate;
 	}
 
-	public void setProductrate(double productrate) {
+	public void setProductrate(Double productrate) {
 		this.productrate = productrate;
 	}
 	

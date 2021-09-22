@@ -22,7 +22,8 @@ public class ProductDTO {
 	@Size(min = 1, max = 500, message = "Please enter values between 1 to 500")
 	private String productname;
 
-	private double productrate;
+	@NotNull(message = "Please enter product rate")
+	private Double productrate;
 
 	public ProductDTO() {
 		super();
@@ -37,12 +38,17 @@ public class ProductDTO {
 		this.productname = productname;
 	}
 
-	public double getProductrate() {
+	public Double getProductrate() {
 		return productrate;
 	}
 
-	public void setProductrate(double productrate) {
+	public void setProductrate(Double productrate) {
 		this.productrate = productrate;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductDTO [productname=" + productname + ", productrate=" + productrate + "]";
 	}
 
 }
