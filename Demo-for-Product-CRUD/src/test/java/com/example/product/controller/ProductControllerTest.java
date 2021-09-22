@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
 import com.example.product.entity.Product;
 import com.example.product.mapper.ProductMapper;
 import com.example.product.models.ProductDTO;
@@ -22,6 +21,15 @@ import com.example.product.repository.ProductRepository;
 import com.example.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
+/**
+ * Junit Test cases for Product using Mockito
+ * 
+ * @author home
+ * @version 1.0
+ */
+
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = ProductController.class)
 public class ProductControllerTest {
@@ -31,46 +39,66 @@ public class ProductControllerTest {
 
 	@MockBean
 	private ProductService service;
-	
+
 	@MockBean
 	private ProductRepository repository;
 	@MockBean
 	private ProductMapper productMapper;
-	
+
+	/**
+	 * GetProduct API Success
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	@DisplayName("Getting a Product Success response")
 	public void getProductTest() throws Exception {
 
-		mockmvc.perform(MockMvcRequestBuilders.get("/api/product/{id}", 1)).andExpect(status().is2xxSuccessful());
+		mockmvc.perform(MockMvcRequestBuilders.get("/api/product/{id}", 1)).andDo(print())
+				.andExpect(status().is2xxSuccessful());
 	}
 
+	/**
+	 * GetProducts API Success
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	@DisplayName("Getting a Product List Success response")
 	public void getProductsTest() throws Exception {
 
-		mockmvc.perform(MockMvcRequestBuilders.get("/api/products")).andExpect(status().isOk());
+		mockmvc.perform(MockMvcRequestBuilders.get("/api/products")).andDo(print()).andExpect(status().isOk());
 	}
 
+	/**
+	 * SaveProduct API Success
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	@DisplayName("Saving a Product List Success response")
 	public void saveProductTest() throws Exception {
 
-		 mockmvc.perform(MockMvcRequestBuilders
-				.post("/api/product")
-				.content(asJsonString(new ProductDTO("firstName4", 12.0)))
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().is2xxSuccessful());
-			   //.andExpect(MockMvcResultMatchers.jsonPath("$.productid").exists());
-				
+		mockmvc.perform(
+				MockMvcRequestBuilders.post("/api/product").content(asJsonString(new ProductDTO("firstName4", 12.0)))
+						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().is2xxSuccessful());
+		// .andExpect(MockMvcResultMatchers.jsonPath("$.productid").exists());
+
 	}
+
+	/**
+	 * Delete Product API Success
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	@DisplayName("delete a Product Success response")
-	public void deleteEmployeeAPI() throws Exception 
-	{
-	  mockmvc.perform( MockMvcRequestBuilders.delete("/api/product/remove/{id}", 1) )
-	        .andExpect(status().isAccepted());
+	public void deleteEmployeeAPI() throws Exception {
+		mockmvc.perform(MockMvcRequestBuilders.delete("/api/product/remove/{id}", 1)).andDo(print())
+				.andExpect(status().isAccepted());
 	}
+
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);

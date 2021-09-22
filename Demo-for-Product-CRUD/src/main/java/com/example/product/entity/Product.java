@@ -7,7 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+/**
+ * Product Entity class
+ * @author Vineeth
+ * @version 1.0
+ */
 
 
 @Table(name="TBL_PRODUCT")

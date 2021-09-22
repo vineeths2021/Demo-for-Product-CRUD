@@ -2,7 +2,14 @@ package com.example.product.exception;
 
 import java.util.Date;
 
+/**
+ * Model class for Error
+ * 
+ * @author home
+ * @version 1.0
+ */
 public class ErrorMessage {
+	
 	private int statusCode;
 	private Date timestamp;
 	private String message;

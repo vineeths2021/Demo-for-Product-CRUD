@@ -7,6 +7,12 @@ import org.mapstruct.Mapper;
 import com.example.product.entity.Product;
 import com.example.product.models.ProductDTO;
 
+/**
+ * Mapper for Product
+ * 
+ * @author home
+ * @version
+ */
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 	ProductDTO toProductDTO(Product product);

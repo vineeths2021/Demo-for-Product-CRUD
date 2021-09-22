@@ -22,6 +22,12 @@ import com.example.product.mapper.ProductMapper;
 import com.example.product.models.ProductDTO;
 import com.example.product.service.ProductService;
 
+/**
+ * Product Controller class for REST APIs
+ * 
+ * @author home
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/api")
 public class ProductController {
@@ -32,6 +38,12 @@ public class ProductController {
 	@Autowired
 	private ProductMapper productMapper;
 
+	/**
+	 * Get Product REST API
+	 * 
+	 * @param id
+	 * @return ProductDTO
+	 */
 	@GetMapping("/product/{id}")
 	public ProductDTO getProduct(@PathVariable String id) {
 		logger.info("getProduct() API invoked");
@@ -40,6 +52,11 @@ public class ProductController {
 		return productMapper.toProductDTO(product);
 	}
 
+	/**
+	 * Get all Products REST API
+	 * 
+	 * @return List
+	 */
 	@GetMapping("/products")
 	public List<ProductDTO> getProducts() {
 		logger.info("getProducts() API invoked");
@@ -48,6 +65,12 @@ public class ProductController {
 		return productMapper.toProductDTOs(products);
 	}
 
+	/**
+	 * Save product REST API
+	 * 
+	 * @param productdto
+	 * @return new Product
+	 */
 	@PostMapping("/product")
 	public Product saveProduct(@Valid @RequestBody ProductDTO productdto) {
 		logger.info("saveProduct() API invoked");
@@ -55,6 +78,12 @@ public class ProductController {
 		return service.saveProduct(productMapper.toProduct(productdto));
 	}
 
+	/**
+	 * Delete a Product REST API
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/product/remove/{id}")
 	public ResponseEntity<HttpStatus> deleteProduct(@PathVariable String id) {
 		logger.info("saveProduct() API invoked");
