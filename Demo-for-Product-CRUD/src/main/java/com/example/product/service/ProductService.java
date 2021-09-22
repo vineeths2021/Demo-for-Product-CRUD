@@ -66,5 +66,6 @@ public class ProductService {
 		Product product = repository.findById(Long.valueOf(id))
 				.orElseThrow(() -> new ResourceNotFoundException("Not found with id" + id));
 		repository.delete(product);
+		
 	}
 }
