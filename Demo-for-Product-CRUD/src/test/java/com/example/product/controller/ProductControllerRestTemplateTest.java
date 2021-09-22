@@ -1,5 +1,7 @@
 package com.example.product.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -9,7 +11,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 
 import antlr.collections.List;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * RestTemplate Controller based Testing

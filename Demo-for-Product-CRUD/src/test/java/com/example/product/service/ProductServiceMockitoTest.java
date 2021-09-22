@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.product.entity.Product;
+import com.example.product.models.ProductType;
 import com.example.product.repository.ProductRepository;
 
 /**
@@ -42,7 +44,9 @@ public class ProductServiceMockitoTest {
 		Product product = new Product();
 		product.setProductname("Car");
 		product.setProductrate(120000.0);
-
+		product.setProducttype(ProductType.AUTOMOBILE);
+		product.setProductdescription("Car is Autombile Part");
+		product.setExpirydate(LocalDate.of(2022, 12, 31));
 		when(repository.save(any(Product.class))).thenReturn(product);
 
 		// save the product
@@ -61,6 +65,9 @@ public class ProductServiceMockitoTest {
 		Product product = new Product();
 		product.setProductname("Car");
 		product.setProductrate(120000.0);
+		product.setProducttype(ProductType.AUTOMOBILE);
+		product.setProductdescription("Car is Autombile Part");
+		product.setExpirydate(LocalDate.of(2022, 12, 31));
 		Optional<Product> returnProduct = Optional.of((Product) product);
 
 		when(repository.findById(Long.valueOf(id))).thenReturn(returnProduct);
@@ -80,7 +87,10 @@ public class ProductServiceMockitoTest {
 		Product product = new Product();
 		product.setProductname("Car");
 		product.setProductrate(120000.0);
-		List<Product> returnProduct = new ArrayList();
+		product.setProducttype(ProductType.AUTOMOBILE);
+		product.setProductdescription("Car is Autombile Part");
+		product.setExpirydate(LocalDate.of(2022, 12, 31));
+		List<Product> returnProduct = new ArrayList<Product>();
 		returnProduct.add(product);
 		when(repository.findAll()).thenReturn(returnProduct);
 
@@ -99,6 +109,9 @@ public class ProductServiceMockitoTest {
 		final Product product = new Product();
 		product.setProductname("Car");
 		product.setProductrate(120000.0);
+		product.setProducttype(ProductType.AUTOMOBILE);
+		product.setProductdescription("Car is Autombile Part");
+		product.setExpirydate(LocalDate.of(2022, 12, 31));
 		Optional<Product> optionalEntityType = Optional.of(product);
 		when(repository.findById(1L)).thenReturn(optionalEntityType);
 

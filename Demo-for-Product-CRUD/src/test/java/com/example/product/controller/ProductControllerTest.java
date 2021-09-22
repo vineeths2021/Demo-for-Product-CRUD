@@ -3,6 +3,8 @@ package com.example.product.controller;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.product.mapper.ProductMapper;
 import com.example.product.models.ProductDTO;
+import com.example.product.models.ProductType;
 import com.example.product.repository.ProductRepository;
 import com.example.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,7 +80,7 @@ public class ProductControllerTest {
 	public void saveProductTest() throws Exception {
 
 		mockmvc.perform(
-				MockMvcRequestBuilders.post("/api/product").content(asJsonString(new ProductDTO("firstName4", 12.0)))
+				MockMvcRequestBuilders.post("/api/product").content(asJsonString(new ProductDTO("Car", 12.0)))
 						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().is2xxSuccessful());
 		// .andExpect(MockMvcResultMatchers.jsonPath("$.productid").exists());

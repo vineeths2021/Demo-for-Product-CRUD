@@ -1,5 +1,7 @@
 package com.example.product.models;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,9 +14,10 @@ import javax.validation.constraints.Size;
  */
 public class ProductDTO {
 
-	public ProductDTO(String string, double d) {
-		this.productname = string;
-		this.productrate = d;
+	public ProductDTO(String productname, Double rate) {
+		this.productname = productname;
+		this.productrate = rate;
+
 	}
 
 	@NotNull(message = "Please enter product name")
@@ -24,6 +27,14 @@ public class ProductDTO {
 
 	@NotNull(message = "Please enter product rate")
 	private Double productrate;
+
+	private ProductType producttype;
+
+	private String productdescription;
+
+	private LocalDate expirydate;
+
+	private LocalDate manufacturedate;
 
 	public ProductDTO() {
 		super();
@@ -46,9 +57,43 @@ public class ProductDTO {
 		this.productrate = productrate;
 	}
 
+	public ProductType getProducttype() {
+		return producttype;
+	}
+
+	public void setProducttype(ProductType producttype) {
+		this.producttype = producttype;
+	}
+
+	public String getProductdescription() {
+		return productdescription;
+	}
+
+	public void setProductdescription(String productdescription) {
+		this.productdescription = productdescription;
+	}
+
+	public LocalDate getExpirydate() {
+		return expirydate;
+	}
+
+	public void setExpirydate(LocalDate expirydate) {
+		this.expirydate = expirydate;
+	}
+
+	public LocalDate getManufacturedate() {
+		return manufacturedate;
+	}
+
+	public void setManufacturedate(LocalDate manufacturedate) {
+		this.manufacturedate = manufacturedate;
+	}
+
 	@Override
 	public String toString() {
-		return "ProductDTO [productname=" + productname + ", productrate=" + productrate + "]";
+		return "ProductDTO [productname=" + productname + ", productrate=" + productrate + ", producttype="
+				+ producttype + ", productdescription=" + productdescription + ", expirydate=" + expirydate
+				+ ", manufacturedate=" + manufacturedate + "]";
 	}
 
 }
