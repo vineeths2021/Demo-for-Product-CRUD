@@ -1,5 +1,6 @@
 package com.example.product.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.DisplayName;
@@ -7,21 +8,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.example.product.entity.Product;
 import com.example.product.mapper.ProductMapper;
 import com.example.product.models.ProductDTO;
 import com.example.product.repository.ProductRepository;
 import com.example.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 /**
  * Junit Test cases for Product using Mockito
