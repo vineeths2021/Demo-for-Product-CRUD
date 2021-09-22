@@ -5,7 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,4 +122,45 @@ public class ProductServiceMockitoTest {
 		verify(repository, times(1)).delete(product);
 
 	}
+	
+	@DisplayName(" Product delete Failure for incorrect id")
+	@Test
+	public void testdeleteProductServiceFailureForInvalidInput() {
+
+		String id="10000000";
+		
+		when(repository.findById(Long.valueOf(id))).thenThrow(IllegalArgumentException.class);
+
+		assertThrows(IllegalArgumentException.class,
+			      () -> service.deleteProduct(id));
+	}
+	@DisplayName(" Product delete Failure for null id")
+	@Test
+	public void testdeleteProductServiceFailureForInvalidData() {
+
+		String id="1";
+		
+		when(repository.findById(Long.valueOf(id))).thenThrow(NullPointerException.class);
+
+		assertThrows(NullPointerException.class,
+			      () -> service.deleteProduct(id));
+	}
+	@DisplayName(" Product save Failure Scenerio for Wrong data")
+	@Test
+	public void testSaveProductServiceFailureForWrongData() {
+		// create a product
+		Product product = new Product();
+		product.setProductname("##$%^^");
+		product.setProductrate(120000.0);
+		product.setProducttype(ProductType.AUTOMOBILE);
+		product.setProductdescription("$#$$#^^#^#");
+		product.setExpirydate(LocalDate.of(2022, 12, 31));
+	
+
+		when(repository.save(any(Product.class))).thenThrow(IllegalArgumentException.class);
+
+		assertThrows(IllegalArgumentException.class,
+			      () -> service.saveProduct(product));
+	}
+	
 }
